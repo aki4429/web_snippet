@@ -1,0 +1,532 @@
+/* # 位置はみ出し確認用
+----------------------------------------------*/
+// * {
+// outline: 2px solid blue;
+// }
+
+/* # 色変数
+----------------------------------------------*/
+$header-bg-color: #ffffff1a;
+$main-bg-color: #f3f3f3;
+$main-letter-color: #3e3e3e;
+$white-letter-color: #ffffff;
+$dark-bg-color: #3e3e3e;
+$white-bg-color: #ffffff;
+$blue-bg-color: #3b69ff;
+$news-bg-color: #3b69ff33;
+$button-default-color: #ffaa3b;
+$button-hover-color: #f18900;
+$button-disable-color: #b2b2b2;
+$button-border-color: #707070;
+$drop-shadow-color: #3e3e3e33;
+$drawer-bg-color: #ffffff;
+$news-line-color: #cecdcd;
+$qa-bg-color: #3b69ff33;
+$required-color: #ff4646;
+$gray-letter: #e3e3e3;
+$news-hover-color: #4973ff1a;
+$border-hover-color: #4973ff;
+
+/* # その他変数
+----------------------------------------------*/
+$layout-width-inner: 1200px;
+
+/* # メディアクエリ
+----------------------------------------------*/
+//ブレークポイント
+$breakpoints: (
+  //キー : 値
+  "sp": "(max-width: 767px)",
+  "tab": "(min-width: 768px) and (max-width: #{$layout-width-inner - 1px})",
+  "pc": "(min-width: #{$layout-width-inner})",
+  "pctab": "(min-width: 768px)"
+) !default;
+
+//メディアクエリ用のmixinを定義。デフォ値はsp
+@mixin mq($breakpoint: sp) {
+  //map-get(マップ型変数, キー)で値を取得
+  @media #{map-get($breakpoints, $breakpoint)} {
+    //この中をカスタムできる
+    @content;
+  }
+}
+
+/* # 共通スタイル
+----------------------------------------------*/
+.is-sp {
+  @include mq("pctab") {
+    display: none;
+  }
+}
+
+.is-pc {
+  @include mq("sp") {
+    display: none;
+  }
+}
+
+/* # body デフォルト設定
+----------------------------------------------*/
+body {
+  //フォントは游ゴシック Montserrat
+  font-family: Montserrat, Arial, "游ゴシック体", YuGothic, "游ゴシック Medium",
+    "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+  font-size: 16px;
+  color: $main-letter-color;
+  background: $main-bg-color;
+}
+
+/* # 共通クラス
+----------------------------------------------*/
+.inner {
+  box-sizing: border-box;
+  max-width: $layout-width-inner;
+  margin: 0 auto;
+  @include mq("tab") {
+    margin: 0 40px;
+  }
+  @include mq("sp") {
+    margin: 0 16px;
+    padding: 0;
+  }
+}
+
+.section__head {
+  display: inline-block;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: calc(44 / 36);
+  margin-bottom: 60px;
+  @include mq("sp") {
+    font-size: 30px;
+    line-height: calc(37 / 30);
+    margin-bottom: 40px;
+  }
+}
+
+
+/*========================================
+# contact 
+/========================================*/
+.contact {
+  background: url(../img/contact-bg.png) no-repeat center top / cover;
+  margin-top: 120px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  @include mq("sp") {
+    margin-top: 0;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+.contact__inner {
+  max-width: 960px;
+}
+.contact__head-wrap {
+  width: 100%;
+  height: 196px;
+  text-align: center;
+  padding: 60px 0;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background: url(../img/contact1.png) no-repeat center center / cover;
+  @include mq("sp") {
+    padding: 40px 16px;
+    height: auto;
+  }
+}
+.contact__head {
+  color: $white-letter-color;
+  margin-bottom: 0;
+}
+.contact__text {
+  margin-top: 16px;
+  color: $white-letter-color;
+  font-size: 16px;
+  @include mq("sp") {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+}
+.contact__form {
+  height: auto;
+  background: $white-bg-color;
+  padding: 60px 120px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  @include mq("sp") {
+    padding: 40px 12px;
+    height: auto;
+  }
+}
+.contact__dl {
+  margin: 0;
+}
+.contact__item {
+  &:not(:first-child) {
+    margin-top: 32px;
+  }
+  display: flex;
+  @include mq("sp") {
+    display: block;
+    margin-top: 0;
+    &:not(:first-child) {
+      margin-top: 28px;
+    }
+  }
+}
+.contact__label {
+  width: 188px;
+  @include mq("sp") {
+    width: 100%;
+    text-align: left;
+  }
+  label {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: calc(24 / 16);
+    position: relative;
+    font-size: 12px;
+    font-weight: 700;
+    @include mq("sp") {
+      font-size: 16px;
+    }
+    :not(:first-child) {
+      margin-top: 32px;
+    }
+    &.contact_required {
+      &::after {
+        position: absolute;
+        content: "必須";
+        width: 40px;
+        height: 16px;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px;
+        color: $white-letter-color;
+        border-radius: 2px;
+        background: $required-color;
+        text-align: center;
+        top: 0;
+        left: calc(100% + 12px);
+        @include mq("sp") {
+          left: calc(100% + 28px);
+        }
+      }
+    }
+  }
+}
+
+.contact__input {
+  width: calc(100% - 188px);
+  @include mq("sp") {
+    width: 100%;
+    margin-top: 12px;
+  }
+  [type="email"],
+  [type="text"] {
+    box-shadow: none;
+    border: 1px solid $button-border-color;
+    padding: 8px 12px;
+    appearance: none;
+    border-radius: 0;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 16px;
+    width: 100%;
+    height: 32px;
+    background: $white-bg-color;
+    border: 1px solid $button-border-color;
+    @include mq("sp") {
+      font-size: 14px;
+      height: 19px;
+      padding: 0;
+      border: none;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px #4973ff80;
+      transition: all 0.2s ease 0s;
+      border: 1px solid $border-hover-color;
+      @include mq("sp") {
+        box-shadow: none;
+        border: none;
+      }
+    }
+    &:hover {
+      box-shadow: 0 0 5px #4973ff80;
+      transition: all 0.2s ease 0s;
+      border: 1px solid $border-hover-color;
+      @include mq("sp") {
+        box-shadow: none;
+        border: none;
+      }
+    }
+  }
+}
+/* 擬似要素を適用するため、input タグをdivタグで囲う*/
+/*  divタグのクラスに対して以下を適用 */
+.contact_underline {
+  position: relative;
+  @include mq("sp") {
+    /*下線を引く */
+    &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 1px;
+      bottom: 0;
+      left: 0;
+      background: $main-letter-color;
+      background: #000;
+    }
+    &:hover {
+      &::before {
+        background: #4973ff;
+      }
+      &::after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        // box-shadow: 0 0 8px  #4973FF80;
+        background: #4973ff80;
+        filter: blur(2px);
+      }
+    }
+  }
+}
+.contact__select {
+  select {
+    box-shadow: none;
+    border: 1px solid $button-border-color;
+    // padding: 12px 40px 12px 12px;
+    padding: 0;
+    padding-left: 12px;
+    margin: 0;
+    appearance: none;
+    border-radius: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: 16px;
+    width: 178px;
+    height: 40px;
+    @include mq("sp") {
+      width: 100%;
+      height: 35px;
+      margin-top: 14px;
+      padding: 0;
+      padding-left: 12px;
+      font-size: 14px;
+    }
+    /* アローアイコンは背景して実装*/
+    background: $white-bg-color url(../img/select-arrow.png) no-repeat right
+      12px center / 15px 15px;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px #4973ff80;
+    }
+    &:hover {
+      box-shadow: 0 0 5px #4973ff80;
+      transition: all 0.2s ease 0s;
+    }
+  }
+}
+.contact__radio {
+  display: flex;
+  column-gap: 40px;
+  position: relative;
+  // position: relative;
+
+  @include mq("sp") {
+    /* 男女オプション上余白*/
+    margin-top: 15px;
+  }
+  [type="radio"] {
+    /* 本来のチェック〇は、隠す*/
+    position: absolute;
+    background: #000;
+    top: 0;
+    left: -300%;
+    opacity: 0;
+    /* チェックドで青丸 */
+    &:checked + span {
+      &::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: $blue-bg-color;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 3px;
+        transition: all 0.2s ease 0s;
+        @include mq("sp") {
+          /* 左余白8px+半径3px */
+          left: 5px;
+        }
+      }
+    }
+  }
+  span {
+    font-size: i6px;
+    padding-left: 20px;
+    position: relative;
+    /* グレー〇 */
+    &::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid $button-border-color;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0px;
+      @include mq("sp") {
+        /* 左余白8px+半径6px */
+        left: 2px;
+      }
+    }
+    &:hover {
+      &::before {
+        border: 1px solid $blue-bg-color;
+        box-shadow: 0 0 6px $drop-shadow-color;
+        transition: all 0.2s ease 0s;
+      }
+    }
+  }
+}
+.contact__message-item {
+  margin-top: 32px;
+}
+.contact__message {
+  margin-top: 8px;
+  textarea {
+    height: 200px;
+    box-shadow: none;
+    border: 1px solid $button-border-color;
+    padding: 8px 12px;
+    appearance: none;
+    border-radius: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: 16px;
+    width: 100%;
+    background: $white-bg-color;
+    @include mq("sp") {
+      height: 160px;
+      font-size: 14px;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px #4973ff80;
+      border: 1px solid $border-hover-color;
+    }
+    &:hover {
+      box-shadow: 0 0 5px #4973ff80;
+      border: 1px solid $border-hover-color;
+      transition: all 0.2s ease 0s;
+    }
+  }
+}
+.contact__check {
+  margin-top: 41px;
+  position: relative;
+  @include mq("sp") {
+    margin-top: 30px;
+  }
+  [type="checkbox"] {
+    /*本来のボックスは飛ばして、opacity:0で隠す*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    /*背景でチェックボックス画像表示*/
+    &:checked + span {
+      &::before {
+        background: $white-bg-color url(../img/checkbox2.png) center center /
+          cover;
+      }
+    }
+  }
+  span {
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 40px;
+    line-height: 20px;
+    position: relative;
+
+    /* チェックなしの四角*/
+    &::before {
+      position: absolute;
+      content: "";
+      width: 20px;
+      height: 20px;
+      border: 1px solid $button-border-color;
+      top: 0;
+      left: -40px;
+      background: $white-bg-color;
+    }
+    &:hover {
+      &::before {
+        border: 1px solid $border-hover-color;
+        box-shadow: 0 0 5px #4973ff33;
+      }
+    }
+  }
+}
+.contact__submit {
+  margin-top: 41px;
+  width: 173px;
+  height: 50px;
+  border-radius: 10px;
+  /* 普段はdisableのボタンカラー */
+  background: $button-disable-color;
+  text-align: center;
+  box-shadow: 0 3px 5px rgba($drop-shadow-color, 0.16);
+  /* 入力条件OK時のスタイル */
+  @include mq("sp") {
+    margin: 35px auto 0 auto;
+  }
+  &.-active {
+    background: $button-default-color;
+    &:hover {
+      background-color: $button-hover-color;
+      transition: all 0.2s ease 0s;
+    }
+  }
+  [type="submit"] {
+    box-shadow: none;
+    border: none;
+    appearance: none;
+    border-radius: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: $white-letter-color;
+    font-family: inherit;
+    line-height: 50px;
+    font-size: 16px;
+    background: transparent;
+  }
+}
+.contact-message {
+  display: inline-block;
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background: $white-bg-color;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: none;
+}
+
+
+/* fontawsomeのサイズ指定 */
+.size-36px {
+  font-size: 36px;
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample Corp. - デイトラ Landing page Sample</title>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- contact start -->
+    <section id="contact" class="contact">
+      <div class="inner contact__inner">
+        <div class="contact__head-wrap">
+          <div class="section__head contact__head">Contact Us</div>
+          <p class="contact__text">
+            どこへ越しても住みにくいと悟った時、詩が生れて、画が出来る。
+          </p>
+        </div>
+
+        <form
+          id="js-form"
+          action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScH6RCqIlmey0tkOGp-H0UBxwwhiNHXhNl8S9BvyU77Ngd02g/formResponse"
+          class="contact__form"
+          method="post"
+        >
+          <!-- google form にログインして、フォームを作る。目のアイコンをクリックして、検証ツールCtrl+Fで "<form" を探す。貼り付ける。 -->
+          <dl class="contact__dl">
+            <div class="contact__item">
+              <dt class="contact__label">
+                <label for="kind">お問い合わせ種別</label>
+              </dt>
+              <dd class="contact__select">
+                <select name="entry.1731550101" id="kind">
+                  <!-- 問い合わせの題名「お問い合わせ種別」など、検証ツールで検索、右側に配列ででてきた数字をnameに設定。 -->
+                  <option value="" hidden>選択してください</option>
+                  <option value="問合せ1">問合せ1</option>
+                  <option value="問合せ2">問合せ2</option>
+                  <option value="問合せ3">問合せ3</option>
+                </select>
+              </dd>
+            </div>
+
+            <div class="contact__item">
+              <dt class="contact__label">
+                <label id="name" for="name" class="contact_required"
+                  >氏名</label
+                >
+              </dt>
+              <dd class="contact__input">
+                <!--  for underline -->
+                <div class="contact_underline">
+                  <input
+                    type="text"
+                    name="entry.1274259426"
+                    placeholder="氏名"
+                    required
+                  />
+                </div>
+              </dd>
+            </div>
+
+            <div class="contact__item">
+              <dt class="contact__label">
+                <label id="kana" for="kana" class="contact_required"
+                  >フリガナ</label
+                >
+              </dt>
+              <dd class="contact__input">
+                <!--  for underline -->
+                <div class="contact_underline">
+                  <input
+                    type="text"
+                    name="entry.1289191521"
+                    placeholder="フリガナ"
+                    required
+                  />
+                </div>
+              </dd>
+            </div>
+
+            <div class="contact__item">
+              <dt class="contact__label">
+                <label for="mail">メールアドレス</label>
+              </dt>
+              <dd class="contact__input">
+                <!--  for underline -->
+                <div class="contact_underline">
+                  <input
+                    type="email"
+                    id="mail"
+                    name="entry.825023636"
+                    placeholder="sample@gmail.com"
+                  />
+                </div>
+              </dd>
+            </div>
+
+            <div class="contact__item">
+              <dt class="contact__label">
+                <label for="male">性別</label>
+              </dt>
+              <dd class="contact__radio">
+                <label
+                  ><input
+                    type="radio"
+                    name="entry.1512392348"
+                    id="male"
+                    value="男性"
+                  /><span>男性</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="entry.1512392348"
+                    id="female"
+                    value="女性"
+                  /><span>女性</span></label
+                >
+              </dd>
+            </div>
+
+            <div class="contact__message-item">
+              <dt class="contact__label">
+                <label for="message">メッセージ</label>
+              </dt>
+              <dd class="contact__message">
+                <textarea id="message" name="entry.1454243366"></textarea>
+              </dd>
+            </div>
+          </dl>
+          <div class="contact__check">
+            <label>
+              <input type="checkbox" value="yes" name="entry.1973672003" />
+              <span>個人情報保護方針に同意する</span>
+            </label>
+          </div>
+          <div id="js-submit" class="contact__submit">
+            <input
+              id="js-submit-input"
+              type="submit"
+              value="送信する"
+              disabled="false"
+            />
+          </div>
+        </form>
+
+        <!-- 送信後のメッセージ -->
+        <div id="js-success" class="contact-message">
+          <p>送信完了しました。ありがとうございました。</p>
+        </div>
+        <div id="js-error" class="contact-message -error">
+          <p>送信完了しました。ありがとうございました。</p>
+        </div>
+      </div>
+    </section>
+    <!-- contact end -->
+
+    <!-- orijinal script -->
+    <script src="./js/script.js"></script>
+  </body>
+</html>
